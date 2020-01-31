@@ -5,6 +5,7 @@ import Option from './components/Option';
 import Cart from './components/Cart';
 import Item from './components/Item';
 import Total from './components/Total';
+// import Summary from './components/Summary';
 
 
 // Normalizes string as a slug - a string that is safe to use
@@ -54,40 +55,40 @@ class App extends Component {
 
 
   render() {
-    const features = Object.keys(this.props.features).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      console.log(featureHash)
-      const options = this.props.features[feature].map(item => {
-        const itemHash = slugify(JSON.stringify(item));
-        // move line 63-75 to option.js, then run a map method to return our options
-        return (
-          <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-          </div>
-        );
-      });
-      console.log(options)
+    // const features = Object.keys(this.props.features).map((feature, idx) => {
+    //   const featureHash = feature + '-' + idx;
+    //   console.log(featureHash)
+    //   const options = this.props.features[feature].map(item => {
+    //     const itemHash = slugify(JSON.stringify(item));
+    //     // move line 63-75 to option.js, then run a map method to return our options
+    //     return (
+    //       <div key={itemHash} className="feature__item">
+    //         <input
+    //           type="radio"
+    //           id={itemHash}
+    //           className="feature__option"
+    //           name={slugify(feature)}
+    //           checked={item.name === this.state.selected[feature].name}
+    //           onChange={e => this.updateFeature(feature, item)}
+    //         />
+    //         <label htmlFor={itemHash} className="feature__label">
+    //           {item.name} ({USCurrencyFormat.format(item.cost)})
+    //         </label>
+    //       </div>
+    //     );
+    //   });
+    //   console.log(options)
 
-      return (
-        <fieldset className="feature" key={featureHash}>
-          <legend className="feature__name">
-            <h3>{feature}</h3>
-          </legend>
-          {options}
-        </fieldset>
-      );
-    });
-    console.log(features)
+    //   return (
+    //     <fieldset className="feature" key={featureHash}>
+    //       <legend className="feature__name">
+    //         <h3>{feature}</h3>
+    //       </legend>
+    //       {options}
+    //     </fieldset>
+    //   );
+    // });
+    // console.log(features)
 
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
@@ -113,12 +114,13 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            {features}
-            {/* <Option updated={this.updateFeature}/> */}
+            {/* {features} */}
+            <Option updated={this.updateFeature} optionState={this.props.features} currentState={this.state.selected}/>
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
             {/* <Cart /> */}
+            {/* <Summary summaryState={this.state.selected}/> */}
             {summary}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
