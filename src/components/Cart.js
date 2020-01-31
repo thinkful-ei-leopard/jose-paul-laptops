@@ -6,15 +6,25 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 function Cart(props) {
-  const total = Object.keys(props.ourState).reduce(
-    (acc, curr) => acc + props.ourState[curr].cost,
-    0
-  );
-  return (
-    <div className="summary__total__value">
-    {USCurrencyFormat.format(total)}
-  </div>
-  )
+
+  const summary = Object.keys(props.cartSummary).map((feature, idx) => {
+    const featureHash = feature + '-' + idx;
+    const selectedOption = props.cartSummary[feature];
+
+
+    return (
+      <div className="summary__option" key={featureHash}>
+        <div className="summary__option__label">{feature} </div>
+        <div className="summary__option__value">{selectedOption.name}</div>
+        <div className="summary__option__cost">
+          {USCurrencyFormat.format(selectedOption.cost)}
+        </div>
+      </div>
+    );
+  });
+
+  console.log(summary)
+  return summary
 }
 
 export default Cart

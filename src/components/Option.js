@@ -13,7 +13,6 @@ function Option(props) {
     console.log(featureHash)
     const options = props.optionState[feature].map(item => {
       const itemHash = slugify(JSON.stringify(item));
-      // move line 63-75 to option.js, then run a map method to return our options
       return (
         <div key={itemHash} className="feature__item">
           <input
@@ -41,6 +40,7 @@ function Option(props) {
       </fieldset>
     );
   });
+
   return features
 }
 

@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import CustomizeForm from './components/CustomizeForm';
 import Option from './components/Option';
-import Cart from './components/Cart';
+import Cart from './components/Total';
 import Item from './components/Item';
 import Total from './components/Total';
 // import Summary from './components/Summary';
-
-
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from 'slugify';
 
 import './App.css';
 
@@ -55,58 +50,24 @@ class App extends Component {
 
 
   render() {
-    // const features = Object.keys(this.props.features).map((feature, idx) => {
+
+    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
     //   const featureHash = feature + '-' + idx;
-    //   console.log(featureHash)
-    //   const options = this.props.features[feature].map(item => {
-    //     const itemHash = slugify(JSON.stringify(item));
-    //     // move line 63-75 to option.js, then run a map method to return our options
-    //     return (
-    //       <div key={itemHash} className="feature__item">
-    //         <input
-    //           type="radio"
-    //           id={itemHash}
-    //           className="feature__option"
-    //           name={slugify(feature)}
-    //           checked={item.name === this.state.selected[feature].name}
-    //           onChange={e => this.updateFeature(feature, item)}
-    //         />
-    //         <label htmlFor={itemHash} className="feature__label">
-    //           {item.name} ({USCurrencyFormat.format(item.cost)})
-    //         </label>
-    //       </div>
-    //     );
-    //   });
-    //   console.log(options)
+    //   const selectedOption = this.state.selected[feature];
+
 
     //   return (
-    //     <fieldset className="feature" key={featureHash}>
-    //       <legend className="feature__name">
-    //         <h3>{feature}</h3>
-    //       </legend>
-    //       {options}
-    //     </fieldset>
+    //     <div className="summary__option" key={featureHash}>
+    //       <div className="summary__option__label">{feature} </div>
+    //       <div className="summary__option__value">{selectedOption.name}</div>
+    //       <div className="summary__option__cost">
+    //         {USCurrencyFormat.format(selectedOption.cost)}
+    //       </div>
+    //     </div>
     //   );
     // });
-    // console.log(features)
 
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
-
-    console.log(summary)
+    // console.log(summary)
 
     return (
       <div className="App">
@@ -114,18 +75,17 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            {/* {features} */}
             <Option updated={this.updateFeature} optionState={this.props.features} currentState={this.state.selected}/>
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
-            {/* <Cart /> */}
+            <Cart cartSummary={this.state.selected}/>
             {/* <Summary summaryState={this.state.selected}/> */}
-            {summary}
+            {/* {summary} */}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
-                <Cart ourState={this.state.selected}/>
+                <Total ourState={this.state.selected}/>
               </div>
             </div>
           </section>
