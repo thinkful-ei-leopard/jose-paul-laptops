@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import CustomizeForm from './components/CustomizeForm';
 import Option from './components/Option';
-import Cart from './components/Total';
-import Item from './components/Item';
+import Cart from './components/Cart';
 import Total from './components/Total';
-// import Summary from './components/Summary';
+
 
 import './App.css';
-
-// This object will allow us to
-// easily convert numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
 
 class App extends Component {
   state = {
@@ -50,25 +41,6 @@ class App extends Component {
 
 
   render() {
-
-    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
-    //   const featureHash = feature + '-' + idx;
-    //   const selectedOption = this.state.selected[feature];
-
-
-    //   return (
-    //     <div className="summary__option" key={featureHash}>
-    //       <div className="summary__option__label">{feature} </div>
-    //       <div className="summary__option__value">{selectedOption.name}</div>
-    //       <div className="summary__option__cost">
-    //         {USCurrencyFormat.format(selectedOption.cost)}
-    //       </div>
-    //     </div>
-    //   );
-    // });
-
-    // console.log(summary)
-
     return (
       <div className="App">
         <Header />
@@ -80,8 +52,6 @@ class App extends Component {
           <section className="main__summary">
             <h2>Your cart</h2>
             <Cart cartSummary={this.state.selected}/>
-            {/* <Summary summaryState={this.state.selected}/> */}
-            {/* {summary} */}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
