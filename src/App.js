@@ -42,19 +42,24 @@ class App extends Component {
     }
   };
 
+  // this sets our state
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
       selected
     });
+    console.log(selected)
   };
+
 
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
+      console.log(featureHash)
       const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
+        // move line 63-75 to option.js, then run a map method to return our options
         return (
           <div key={itemHash} className="feature__item">
             <input
@@ -71,6 +76,7 @@ class App extends Component {
           </div>
         );
       });
+      console.log(options)
 
       return (
         <fieldset className="feature" key={featureHash}>
@@ -81,10 +87,12 @@ class App extends Component {
         </fieldset>
       );
     });
+    console.log(features)
 
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
+
 
       return (
         <div className="summary__option" key={featureHash}>
@@ -97,10 +105,7 @@ class App extends Component {
       );
     });
 
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
+    console.log(summary)
 
     return (
       <div className="App">
@@ -109,14 +114,16 @@ class App extends Component {
           <form className="main__form">
             <h2>Customize your laptop</h2>
             {features}
+            {/* <Option updated={this.updateFeature}/> */}
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
+            {/* <Cart /> */}
             {summary}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
+                <Cart ourState={this.state.selected}/>
               </div>
             </div>
           </section>
