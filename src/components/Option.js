@@ -3,9 +3,10 @@ import OptionItem from './OptionItem';
 
 function Option(props) {
   const featureHash = props.feature + '-' + props.idx;
-  const options = props.features[props.feature].map(item => {
+  const options = props.features[props.feature].map((item, idx) => {
     return (
       <OptionItem
+        key={idx}
         item={item}
         feature={props.feature}
         features={props.features}
