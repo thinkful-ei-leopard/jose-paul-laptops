@@ -8,10 +8,10 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 function Option(props) {
  
-  const features = Object.keys(props.optionState).map((feature, idx) => {
+  const features = Object.keys(props.mangos).map((feature, idx) => {
     const featureHash = feature + '-' + idx;
     console.log(featureHash)
-    const options = props.optionState[feature].map(item => {
+    const options = props.mangos[feature].map(item => {
       const itemHash = slugify(JSON.stringify(item));
       return (
         <div key={itemHash} className="feature__item">
@@ -20,8 +20,8 @@ function Option(props) {
             id={itemHash}
             className="feature__option"
             name={slugify(feature)}
-            checked={item.name === props.currentState[feature].name}
-            onChange={e => props.updated(feature, item)}
+            checked={item.name === props.kiwi[feature].name}
+            onChange={e => props.bananas(feature, item)}
           />
           <label htmlFor={itemHash} className="feature__label">
             {item.name} ({USCurrencyFormat.format(item.cost)})

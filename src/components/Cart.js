@@ -7,9 +7,9 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 function Cart(props) {
 
-  const summary = Object.keys(props.cartSummary).map((feature, idx) => {
+  const summary = Object.keys(props.cherries).map((feature, idx) => {
     const featureHash = feature + '-' + idx;
-    const selectedOption = props.cartSummary[feature];
+    const selectedOption = props.cherries[feature];
 
 
     return (

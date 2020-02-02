@@ -6,8 +6,8 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 function Total(props) {
-  const num = Object.keys(props.ourState).reduce(
-    (acc, curr) => acc + props.ourState[curr].cost,
+  const num = Object.keys(props.blueberry).reduce(
+    (acc, curr) => acc + props.blueberry[curr].cost,
     0
   );
   return (

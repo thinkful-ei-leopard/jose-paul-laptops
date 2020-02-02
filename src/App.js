@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Option from './components/Option';
-import Cart from './components/Cart';
-import Total from './components/Total';
+import Form from './components/Form';
+import Summary from './components/Summary'
 
 
 import './App.css';
@@ -45,20 +44,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            <Option updated={this.updateFeature} optionState={this.props.features} currentState={this.state.selected}/>
-          </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            <Cart cartSummary={this.state.selected}/>
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                <Total ourState={this.state.selected}/>
-              </div>
-            </div>
-          </section>
+          <Form updated={this.updateFeature} optionState={this.props.features} currentState={this.state.selected}/>
+          <Summary cartSummary={this.state.selected} ourState={this.state.selected}/>
         </main>
       </div>
     );
