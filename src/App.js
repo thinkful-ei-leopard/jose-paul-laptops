@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Option from './components/Option';
 import Cart from './components/Cart';
 import Total from './components/Total';
+import CustomizeSection from './components/CustomizeSection';
 
 
 import './App.css';
+
+const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+});
 
 class App extends Component {
   state = {
@@ -45,10 +50,14 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            <Option updated={this.updateFeature} optionState={this.props.features} currentState={this.state.selected}/>
-          </form>
+
+         <CustomizeSection 
+         usCurrency={USCurrencyFormat}
+         features={this.props.features}
+         ourState={this.state.selected}
+         updateFeature={this.updateFeature}
+         />
+
           <section className="main__summary">
             <h2>Your cart</h2>
             <Cart cartSummary={this.state.selected}/>
