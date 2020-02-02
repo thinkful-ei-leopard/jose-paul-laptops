@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Cart from './components/Cart';
-import Total from './components/Total';
 import CustomizeSection from './components/CustomizeSection';
 
 
@@ -44,7 +43,6 @@ class App extends Component {
     console.log(selected)
   };
 
-
   render() {
     return (
       <div className="App">
@@ -58,16 +56,11 @@ class App extends Component {
          updateFeature={this.updateFeature}
          />
 
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            <Cart cartSummary={this.state.selected}/>
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                <Total ourState={this.state.selected}/>
-              </div>
-            </div>
-          </section>
+        <Cart
+          usCurrency={USCurrencyFormat}
+          features={this.props.features}
+          ourState={this.state.selected}
+          />
         </main>
       </div>
     );
