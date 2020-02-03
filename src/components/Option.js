@@ -1,6 +1,7 @@
 import React from 'react'
 import slugify from 'slugify';
 
+
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
@@ -34,7 +35,7 @@ function Option(props) {
     return (
       <fieldset className="feature" key={featureHash}>
         <legend className="feature__name">
-          <h3>{feature}</h3>
+          <h3>{props.feature}</h3>
         </legend>
         {options}
       </fieldset>
